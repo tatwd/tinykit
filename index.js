@@ -1,4 +1,5 @@
 // Copyright 2020 tatwd. All rights reserved. MIT license.
-import isDark from './isDark';
+import isDark from './src/isDark';
+import timeSpan from './src/timeSpan';
 
-export { isDark };
+export { isDark, timeSpan };
