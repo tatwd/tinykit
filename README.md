@@ -13,4 +13,12 @@ or
 <!-- <script src="https://unpkg.com/tinykit/dist/bundle.umd.min.js"></script> -->
 ```
 
+dev
+
+```
+npm install
+npm test
+npm run build
+```
+
 MIT
