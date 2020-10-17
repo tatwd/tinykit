@@ -1,0 +1,27 @@
+<div>
+  <button id="btn-start">start</button>
+  <button id="btn-start-force">start force</button>
+  <button id="btn-stop">stop</button>
+  <button id="btn-resume">resume</button>
+  <span id="label">0</span>
+</div>
+
+<script type="module">
+  import { makeTimer } from '../dist/bundle.esm.js';
+
+  const startBtn = document.querySelector('#btn-start');
+  const startForceBtn = document.querySelector('#btn-start-force');
+  const stopBtn = document.querySelector('#btn-stop');
+  const resumeBtn = document.querySelector('#btn-resume');
+  const labelEl = document.querySelector('#label');
+
+  const timer = makeTimer(() => {
+    console.log(timer);
+    labelEl.innerHTML = timer.elapsed / 1000;
+  }, 2000);
+
+  startBtn.addEventListener('click', () => timer.start());
+  startForceBtn.addEventListener('click', () => timer.start(true));
+  stopBtn.addEventListener('click', () => timer.stop());
+  resumeBtn.addEventListener('click', () => timer.resume);
+</script>
