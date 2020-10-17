@@ -1,7 +1,7 @@
 /**
  * 计算两个时间差(包含不同维度)
- * @param {Date} atime - 时间 A
- * @param {Date} [btime] - 时间 B, 可选, 默认值 `new Date()`
+ * @param {Date} atime 时间 A
+ * @param {Date} [btime] 时间 B, 可选, 默认值 `new Date()`
  */
 function timeSpan(atime, btime) {
   var milliseconds = (btime || new Date()) - atime;
