@@ -4,13 +4,15 @@
  * @param {number} ms 间隔毫秒数
  */
 function makeTimer(handle, ms = 1000) {
+  let id = 0;
+
   const reset = () => {
     timer.elapsed = 0;
     clearInterval(id);
   };
 
   const run = () => {
-    setInterval(() => {
+    id = setInterval(() => {
       timer.elapsed += ms;
       handle && handle();
     }, ms);
@@ -18,7 +20,7 @@ function makeTimer(handle, ms = 1000) {
     timer.state = 'running';
   };
 
-  return {
+  const timer = {
     /**
      * 计时器状态
      */
@@ -63,6 +65,8 @@ function makeTimer(handle, ms = 1000) {
       if (timer.state === 'stopped') run();
     },
   };
+
+  return timer;
 }
 
 export default makeTimer;
