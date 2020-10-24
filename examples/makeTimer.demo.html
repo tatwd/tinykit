@@ -1,0 +1,40 @@
+<div>
+  <button id="btn-start">start</button>
+  <button id="btn-start-force">start force</button>
+  <button id="btn-stop">stop</button>
+  <button id="btn-resume">resume</button>
+  <br />
+  Timer elapsed(ms): <span id="timer-elapsed">0</span>
+  <br />
+  Timer state: <span id="timer-state">ready</span>
+</div>
+
+<script type="module">
+  import { makeTimer } from '../dist/bundle.esm.js';
+
+  const timer = makeTimer(() => {
+    console.log(timer);
+    document.querySelector('#timer-elapsed').innerHTML = timer.elapsed;
+  }, 2000);
+
+  const updateState = () => {
+    document.querySelector('#timer-state').innerHTML = timer.state;
+  };
+
+  document.querySelector('#btn-start').addEventListener('click', () => {
+    timer.start();
+    updateState();
+  });
+  document.querySelector('#btn-start-force').addEventListener('click', () => {
+    timer.start(true);
+    updateState();
+  });
+  document.querySelector('#btn-stop').addEventListener('click', () => {
+    timer.stop();
+    updateState();
+  });
+  document.querySelector('#btn-resume').addEventListener('click', () => {
+    timer.resume();
+    updateState();
+  });
+</script>

@@ -4,57 +4,65 @@
  * @param {number} ms 间隔毫秒数
  */
 function makeTimer(handle, ms = 1000) {
-  let id = 0,
-    // 计时器状态
-    state = 'ready',
-    // 计时器运行毫秒数
-    elapsed = 0;
-
   const reset = () => {
-    elapsed = 0;
+    timer.elapsed = 0;
     clearInterval(id);
   };
 
   const run = () => {
-    id = setInterval(() => {
-      elapsed += ms;
+    setInterval(() => {
+      timer.elapsed += ms;
       handle && handle();
     }, ms);
 
-    state = 'running';
+    timer.state = 'running';
   };
 
-  /**
-   * 启动计时器
-   * @param {boolean} force 是否强制启动计时
-   */
-  const start = (force = false) => {
-    if (force == true || state === 'ready' || state === 'stopped') {
-      // reset elapsed value
-      // means start a new timer
-      reset();
-      run();
-    }
-  };
+  return {
+    /**
+     * 计时器状态
+     */
+    state: 'ready',
 
-  /**
-   * 停止(暂停)计时器
-   */
-  const stop = () => {
-    if (state === 'running') {
-      clearInterval(id);
-      state = 'stopped';
-    }
-  };
+    /**
+     * 计时器运行毫秒数
+     */
+    elapsed: 0,
 
-  /**
-   * 重新启动计时器
-   */
-  const resume = () => {
-    if (state === 'stopped') run();
-  };
+    /**
+     * 启动计时器
+     * @param {boolean} force 是否强制启动计时器
+     */
+    start(force = false) {
+      if (
+        force == true ||
+        timer.state === 'ready' ||
+        timer.state === 'stopped'
+      ) {
+        // reset elapsed value
+        // means start a new timer
+        reset();
+        run();
+      }
+    },
 
-  return { state, elapsed, start, stop, resume };
+    /**
+     * 停止(暂停)计时器
+     */
+    stop() {
+      if (timer.state === 'running') {
+        clearInterval(id);
+        timer.state = 'stopped';
+      }
+    },
+
+    /**
+     * 重新启动计时器
+     */
+    resume() {
+      if (timer.state === 'stopped') run();
+    },
+  };
 }
 
 export default makeTimer;
