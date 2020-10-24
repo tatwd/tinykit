@@ -3,6 +3,8 @@
   <button id="btn-start-force">start force</button>
   <button id="btn-stop">stop</button>
   <button id="btn-resume">resume</button>
+  <button id="btn-speed-up">speed up</button>
+  <button id="btn-speed-down">speed down</button>
   <br />
   Timer elapsed(ms): <span id="timer-elapsed">0</span>
   <br />
@@ -36,5 +38,11 @@
   document.querySelector('#btn-resume').addEventListener('click', () => {
     timer.resume();
     updateState();
+  });
+  document.querySelector('#btn-speed-up').addEventListener('click', () => {
+    timer.speedto(timer.interval - 10);
+  });
+  document.querySelector('#btn-speed-down').addEventListener('click', () => {
+    timer.speedto(timer.interval + 1000);
   });
 </script>

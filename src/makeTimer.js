@@ -13,14 +13,19 @@ function makeTimer(handle, ms = 1000) {
 
   const run = () => {
     id = setInterval(() => {
-      timer.elapsed += ms;
+      timer.elapsed += timer.interval;
       handle && handle();
-    }, ms);
+    }, timer.interval);
 
     timer.state = 'running';
   };
 
   const timer = {
+    /**
+     * 时间间隔(ms)
+     */
+    interval: ms,
+
     /**
      * 计时器状态
      */
@@ -63,6 +68,16 @@ function makeTimer(handle, ms = 1000) {
      */
     resume() {
       if (timer.state === 'stopped') run();
+    },
+
+    /**
+     * 改变计算器的计时速度(间隔)
+     * @param {number} newInterval 新的时间间隔数(ms)
+     */
+    speedto(newInterval) {
+      timer.interval = newInterval;
+      clearInterval(id);
+      run();
     },
   };
 
