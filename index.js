@@ -2,5 +2,6 @@
 import isDark from './src/isDark';
 import timeSpan from './src/timeSpan';
 import makeTimer from './src/makeTimer';
+import sleep from './src/sleep';
 
-export { isDark, timeSpan, makeTimer };
+export { isDark, timeSpan, makeTimer, sleep };
