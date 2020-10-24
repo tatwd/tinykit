@@ -1,6 +1,6 @@
 /**
  * 简单(粗糙)的 sleep 实现, 无法中断, 无法实现精确的 ms 级别间隔
- * @param {number} sec 毫秒数
+ * @param {number} sec 秒数
  */
 function sleep(sec) {
   // 高 CPU 占有
