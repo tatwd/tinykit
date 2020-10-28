@@ -1,0 +1,8 @@
+<pre id="response-text"></pre>
+
+<script src="../dist/bundle.umd.js"></script>
+<script>
+  tinykit.makeAjax().send('https://api.github.com/', function (res) {
+    document.querySelector('#response-text').innerText = res;
+  });
+</script>
