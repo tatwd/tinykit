@@ -1,0 +1,21 @@
+<pre id="response-text"></pre>
+
+<script src="../dist/bundle.umd.js"></script>
+<script>
+  tinykit.loading(
+    function (state) {
+      tinykit.makeAjax().send('https://api.github.com/', function (res, xhr) {
+        if (xhr.status === 200) {
+          var repos = JSON.parse(res);
+          var html = '<ul>';
+          for (var key in repos) {
+            html += `<li>${key}: <code>${repos[key]}</code></li>`;
+          }
+          html += '</ul>';
+          state.render(html);
+        } else console.warn(xhr);
+      });
+    },
+    { el: document.querySelector('#response-text') }
+  );
+</script>
