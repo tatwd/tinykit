@@ -31,7 +31,7 @@ function makeAjax() {
     xhr,
 
     /**
-     *
+     * 发送异步请求
      * @param {string} url 请求地址
      * @param {Function} handle 回调函数
      * @param {string} method 请求方法, 默认 `GET`
