@@ -12,10 +12,14 @@
             html += `<li>${key}: <code>${repos[key]}</code></li>`;
           }
           html += '</ul>';
-          state.render(html);
-        } else console.warn(xhr);
+          state.target.innerHTML = html;
+        } else state.target.innerHTML = '网络错误！';
       });
     },
-    { el: document.querySelector('#response-text') }
+    {
+      el: document.querySelector('#response-text'),
+      html: '<i>加载中...</i>',
+      dely: 1000,
+    }
   );
 </script>

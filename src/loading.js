@@ -11,9 +11,9 @@ function loading(callback, option) {
   } = option;
   const state = {
     target: el,
-    render(html) {
-      el.innerHTML = html;
-    },
+    // render(html) {
+    //   el.innerHTML = html;
+    // },
   };
   el.innerHTML = html;
   setTimeout(() => callback && callback(state), delay);
