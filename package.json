@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "test": "jest --runInBand --detectOpenHandles",
-    "build": "rollup --config"
+    "build": "rollup --config",
+    "examples": "rollup --config && serve"
   },
   "keywords": [
     "tinykit"
@@ -23,6 +24,7 @@
     "@rollup/plugin-node-resolve": "^9.0.0",
     "jest": "^26.5.3",
     "rollup": "^2.29.0",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "serve": "^11.3.2"
   }
 }
