@@ -1,7 +1,7 @@
 <style>
   .tinykit__emojis-list {
     border: 1px solid #234;
-    width: 180px;
+    width: 160px;
     margin-top: 5px;
     margin-bottom: 5px;
     height: 240px;
@@ -13,160 +13,62 @@
 
   .tinykit__emojis-item {
     cursor: pointer;
+    margin: 2px;
     display: inline-block;
+    vertical-align: middle;
   }
 </style>
 <div>
-  <button id="toggle-button">emojis</button>
+  place select a emojs
+  <div style="display: inline-block">
+    <button id="toggle-button">emojis</button>
+    <div class="mout-el"></div>
+  </div>
   selected emojis: <span id="selected-emojis"></span>
-  <div class="mout-el"></div>
 </div>
 
 <p>Other contents</p>
 
+<script src="../dist/bundle.umd.js"></script>
 <script>
-  var emojisMap = {
-    grinning: '😀',
-    smiley: '😃',
-    smile: '😄',
-    grin: '😁',
-    laughing: '😆',
-    sweat_smile: '😅',
-    joy: '😂',
-    blush: '😊',
-    innocent: '😇',
-    wink: '😉',
-    relieved: '😌',
-    heart_eyes: '😍',
-    kissing_heart: '😘',
-    kissing: '😗',
-    kissing_smiling_eyes: '😙',
-    kissing_closed_eyes: '😚',
-    yum: '😋',
-    stuck_out_tongue_winking_eye: '😜',
-    stuck_out_tongue_closed_eyes: '😝',
-    stuck_out_tongue: '😛',
-    sunglasses: '😎',
-    smirk: '😏',
-    unamused: '😒',
-    disappointed: '😞',
-    pensive: '😔',
-    worried: '😟',
-    confused: '😕',
-    persevere: '😣',
-    confounded: '😖',
-    tired_face: '😫',
-    weary: '😩',
-    angry: '😠',
-    rage: '😡',
-    no_mouth: '😶',
-    neutral_face: '😐',
-    expressionless: '😑',
-    hushed: '😯',
-    frowning: '😦',
-    anguished: '😧',
-    open_mouth: '😮',
-    astonished: '😲',
-    dizzy_face: '😵',
-    flushed: '😳',
-    scream: '😱',
-    fearful: '😨',
-    cold_sweat: '😰',
-    cry: '😢',
-    disappointed_relieved: '😥',
-    sob: '😭',
-    sweat: '😓',
-    sleepy: '😪',
-    sleeping: '😴',
-    mask: '😷',
-    smiling_imp: '😈',
-    smiley_cat: '😺',
-    smile_cat: '😸',
-    joy_cat: '😹',
-    heart_eyes_cat: '😻',
-    smirk_cat: '😼',
-    kissing_cat: '😽',
-    scream_cat: '🙀',
-    crying_cat_face: '😿',
-    pouting_cat: '😾',
-    cat: '🐱',
-    mouse: '🐭',
-    cow: '🐮',
-    monkey_face: '🐵',
-    hand: '✋',
-    fist: '✊',
-    v: '✌️',
-    point_up: '👆',
-    point_down: '👇',
-    point_left: '👈',
-    point_right: '👉',
-    facepunch: '👊',
-    wave: '👋',
-    clap: '👏',
-    open_hands: '👐',
-    '+1': '👍',
-    '-1': '👎',
-    ok_hand: '👌',
-    pray: '🙏',
-    ear: '👂',
-    eyes: '👀',
-    nose: '👃',
-    lips: '👄',
-    tongue: '👅',
-    heart: '❤️',
-    cupid: '💘',
-    sparkling_heart: '💖',
-    star: '⭐️',
-    sparkles: '✨',
-    zap: '⚡️',
-    sunny: '☀️',
-    cloud: '☁️',
-    snowflake: '❄️',
-    umbrella: '☔️',
-    coffee: '☕️',
-    airplane: '✈️',
-    anchor: '⚓️',
-    watch: '⌚️',
-    phone: '☎️',
-    hourglass: '⌛️',
-    email: '✉️',
-    scissors: '✂️',
-    black_nib: '✒️',
-    pencil2: '✏️',
-    x: '❌',
-    recycle: '♻️',
-    white_check_mark: '✅',
-    negative_squared_cross_mark: '❎',
-    m: 'Ⓜ️',
-    i: 'ℹ️',
-    tm: '™️',
-    copyright: '©️',
-    registered: '®️',
-  };
-
-  var cacheHtml = undefined;
   var mouted = false;
+  var show = false;
+  var mouteEl = document.querySelector('.mout-el');
+  var selectedEmojisEl = document.querySelector('#selected-emojis');
 
-  function getEmojisListHtml() {
-    if (cacheHtml) return cacheHtml;
+  function renderEmojisListHtml(emojisMap) {
     var html = '<div class="tinykit__emojis-list">';
     for (var key in emojisMap) {
       if (emojisMap.hasOwnProperty(key)) {
-        html += `<span class="tinykit__emojis-item" title="${key}" data-value="${emojisMap[key]}">${emojisMap[key]}</span>`;
+        html +=
+          emojisMap[key].startsWith('//') ||
+          emojisMap[key].startsWith('http://') ||
+          emojisMap[key].startsWith('https://')
+            ? `<img alt="${key}" referrerpolicy="no-referrer" style="height:18px;" class="tinykit__emojis-item" data-type="img" src="${emojisMap[key]}"/>`
+            : `<span class="tinykit__emojis-item" title="${key}" data-type="text">${emojisMap[key]}</span>`;
       }
     }
     html += '</div>';
-    cacheHtml = html;
     return html;
   }
 
-  function toggleEmojisSelectList() {
-    mouteEl.innerHTML = mouted ? '' : getEmojisListHtml();
-    mouted = !mouted;
+  function fetchEmojisList(cb) {
+    mouteEl.style.display = 'none';
+    mouteEl.innerHTML =
+      '<div class="tinykit__emojis-list"><i>loading...</i></div>';
+    var navtiveAjax = tinykit.makeAjax();
+    setTimeout(function () {
+      navtiveAjax.send('./emojis.json', function (res) {
+        emojisMap = JSON.parse(res);
+        mouteEl.innerHTML = renderEmojisListHtml(emojisMap);
+      });
+    }, 1000);
   }
 
-  var mouteEl = document.querySelector('.mout-el');
-  var selectedEmojisEl = document.querySelector('#selected-emojis');
+  function toggleEmojisSelectList() {
+    mouteEl.style.display = show ? 'none' : 'block';
+    show = !show;
+  }
 
   document
     .querySelector('#toggle-button')
@@ -175,6 +77,10 @@
   mouteEl.addEventListener('click', function (evt) {
     var targetEl = evt.target;
     if (targetEl.classList.contains('tinykit__emojis-item'))
-      return (selectedEmojisEl.innerHTML = targetEl.dataset.value);
+      return targetEl.dataset.type === 'img'
+        ? (selectedEmojisEl.innerHTML = targetEl.outerHTML)
+        : (selectedEmojisEl.innerHTML = targetEl.innerHTML);
   });
+
+  fetchEmojisList();
 </script>
