@@ -1,8 +1,23 @@
+<button id="getdata-btn">get data</button>
+<button id="cancel-btn">cancel</button>
 <pre id="response-text"></pre>
 
 <script src="../dist/bundle.umd.js"></script>
 <script>
-  tinykit.makeAjax().send('https://api.github.com/', function (res) {
-    document.querySelector('#response-text').innerText = res;
-  });
+  var nativeAjax = tinykit.makeAjax();
+  function fetchDataAndRender() {
+    nativeAjax.send('https://api.github.com/', function (res) {
+      document.querySelector('#response-text').innerText = res;
+    });
+  }
+  function cancelRequest() {
+    console.log(nativeAjax);
+    nativeAjax.cancel();
+  }
+  document
+    .querySelector('#getdata-btn')
+    .addEventListener('click', fetchDataAndRender);
+  document
+    .querySelector('#cancel-btn')
+    .addEventListener('click', cancelRequest);
 </script>

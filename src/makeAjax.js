@@ -50,6 +50,10 @@ function makeAjax() {
         }
       };
 
+      xhr.onabort = function () {
+        console.warn('Request has been canceled!');
+      };
+
       for (var key in headers) {
         if (headers.hasOwnProperty(key)) {
           xhr.setRequestHeader(key, headers[key]);
@@ -57,6 +61,12 @@ function makeAjax() {
       }
 
       xhr.send(data);
+    },
+
+    cancel() {
+      if (xhr.readyState > 0 && xhr.readyState < 4) {
+        xhr.abort();
+      }
     },
   };
 }
