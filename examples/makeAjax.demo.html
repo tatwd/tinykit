@@ -1,17 +1,18 @@
 <button id="getdata-btn">get data</button>
 <button id="cancel-btn">cancel</button>
+API URL:<input value="https://api.github.com/" id="apiurl" />
 <pre id="response-text"></pre>
 
 <script src="../dist/bundle.umd.js"></script>
 <script>
   var nativeAjax = tinykit.makeAjax();
+  var apiurlEl = document.querySelector('#apiurl');
   function fetchDataAndRender() {
-    nativeAjax.send('https://api.github.com/', function (res) {
+    nativeAjax.send(apiurlEl.value, function (res) {
       document.querySelector('#response-text').innerText = res;
     });
   }
   function cancelRequest() {
-    console.log(nativeAjax);
     nativeAjax.cancel();
   }
   document
