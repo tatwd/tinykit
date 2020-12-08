@@ -1,0 +1,12 @@
+<div style="height: 1000px; background-color: blue"></div>
+<div id="foo" style="height: 80px; background-color: brown"></div>
+
+<script type="module">
+  import { isVisible } from '../dist/bundle.esm.js';
+
+  const fooEl = document.querySelector('#foo');
+  window.onscroll = () => {
+    const visible = isVisible(fooEl);
+    console.log(visible);
+  };
+</script>
