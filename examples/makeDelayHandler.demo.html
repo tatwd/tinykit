@@ -1,0 +1,15 @@
+<input id="input" />
+<div id="content"></div>
+
+<script type="module">
+  import { makeDelayHandler } from '../dist/bundle.esm.js';
+
+  var handler = makeDelayHandler((event) => {
+    console.log(event);
+    document.querySelector(
+      '#content'
+    ).innerHTML += `<p>${event.target.value}</p>`;
+  }, 1000);
+
+  document.querySelector('#input').addEventListener('keyup', handler);
+</script>

@@ -6,3 +6,5 @@ export { default as sleep } from './src/sleep';
 export { default as makeAjax } from './src/makeAjax';
 export { default as loading } from './src/loading';
 export { default as isVisible } from './src/isVisible';
+export { default as timeAgo } from './src/timeAgo';
+export { default as makeDelayHandler } from './src/makeDelayHandler';
