@@ -4,16 +4,9 @@
  * @param {object} option 配置项
  */
 function loading(callback, option) {
-  const {
-    el = document.body,
-    html = '<i>Loading ...</i>',
-    delay = 500,
-  } = option;
+  const { el = document.body, html = 'Loading..', delay = 500 } = option;
   const state = {
     target: el,
-    // render(html) {
-    //   el.innerHTML = html;
-    // },
   };
   el.innerHTML = html;
   setTimeout(() => callback && callback(state), delay);
