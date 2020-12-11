@@ -5,13 +5,14 @@
  */
 function makeDelayHandler(callback, delay = 800) {
   let lastTimestamp = undefined;
+  let id;
   return function (args) {
-    let id = setTimeout(() => callback && callback(args), delay);
     const nowTimestamp = Date.now();
-    if (lastTimestamp && nowTimestamp - lastTimestamp < delay) {
+    if (lastTimestamp && nowTimestamp - lastTimestamp <= delay) {
       // 在 delay 时间内的立即清除
       clearTimeout(id);
     }
+    id = setTimeout(() => callback && callback(args), delay);
     lastTimestamp = nowTimestamp;
   };
 }
