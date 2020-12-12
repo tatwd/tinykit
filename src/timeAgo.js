@@ -13,7 +13,7 @@ function timeAgo(time, locales = 'zh') {
   if (ts.hours < 24) return ts.hours + ' ' + i18n[locales].hoursAgo;
   if (ts.days < 30) return ts.days + ' ' + i18n[locales].daysAgo;
   if (ts.years < 1) return ~~(ts.days / 30) + '' + i18n[locales].monthsAgo;
-  return ts.years + '' + i18n[locales].yearsAgo;
+  return ts.years + ' ' + i18n[locales].yearsAgo;
 }
 
 const i18n = {
