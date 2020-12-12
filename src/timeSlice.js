@@ -13,8 +13,10 @@ function timeSlice(time) {
     minutes: time.getMinutes(),
     seconds: time.getSeconds(),
     milliseconds: time.getMilliseconds(),
+
     /** 星期 */
     dayOfWeek: time.getDay(),
+
     /** 时间戳 */
     timestamp: time.getTime(),
   };

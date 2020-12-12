@@ -8,3 +8,5 @@ export { default as loading } from './src/loading';
 export { default as isVisible } from './src/isVisible';
 export { default as timeAgo } from './src/timeAgo';
 export { default as makeDelayHandler } from './src/makeDelayHandler';
+export { default as timeSlice } from './src/timeSlice';
+export { default as timeFormat } from './src/timeFormat';
