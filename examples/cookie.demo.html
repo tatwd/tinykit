@@ -1,0 +1,16 @@
+<pre id="content"></pre>
+<script type="module">
+  import { mapCookie, readCookie } from '../dist/bundle.esm.js';
+
+  document.cookie = 'foo=test';
+  document.cookie = 'bar=123';
+  document.cookie = 'baz=';
+
+  const cookies = mapCookie();
+  console.log(cookies);
+
+  const contentEl = document.querySelector('#content');
+  contentEl.innerHTML += readCookie('foo') + '\n';
+  contentEl.innerHTML += readCookie('bar') + '\n';
+  contentEl.innerHTML += readCookie('baz') === '';
+</script>

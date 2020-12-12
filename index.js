@@ -10,3 +10,5 @@ export { default as timeAgo } from './src/timeAgo';
 export { default as makeDelayHandler } from './src/makeDelayHandler';
 export { default as timeSlice } from './src/timeSlice';
 export { default as timeFormat } from './src/timeFormat';
+export { default as readCookie } from './src/readCookie';
+export { default as mapCookie } from './src/mapCookie';
