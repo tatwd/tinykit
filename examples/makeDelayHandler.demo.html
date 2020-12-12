@@ -4,12 +4,14 @@
 <script type="module">
   import { makeDelayHandler } from '../dist/bundle.esm.js';
 
-  var handler = makeDelayHandler((event) => {
-    console.log(event);
+  var handler = makeDelayHandler((event, n) => {
+    console.log(this, event, n);
     document.querySelector(
       '#content'
     ).innerHTML += `<p>${event.target.value}</p>`;
   }, 1000);
 
-  document.querySelector('#input').addEventListener('keyup', handler);
+  document
+    .querySelector('#input')
+    .addEventListener('keyup', (event) => handler(event, 123));
 </script>

@@ -4,15 +4,15 @@
  * @param {number} delay 延迟毫秒数, 可选, 默认值 `800`
  */
 function makeDelayHandler(callback, delay = 800) {
-  let lastTimestamp = undefined;
+  let lastTimestamp;
   let id;
-  return function (args) {
+  return function () {
     const nowTimestamp = Date.now();
     if (lastTimestamp && nowTimestamp - lastTimestamp <= delay) {
       // 在 delay 时间内的立即清除
       clearTimeout(id);
     }
-    id = setTimeout(() => callback && callback(args), delay);
+    id = setTimeout(() => callback && callback.apply(null, arguments), delay);
     lastTimestamp = nowTimestamp;
   };
 }
