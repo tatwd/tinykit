@@ -9,11 +9,11 @@ function timeAgo(time, locales = 'zh') {
   const ts = timeSpan(time);
   if (!i18n[locales]) locales = 'zh';
   if (ts.seconds < 60) return i18n[locales].justNow;
-  if (ts.minutes < 60) return ~~ts.minutes + ' ' + i18n[locales].minutesAgo;
-  if (ts.hours < 24) return ~~ts.hours + ' ' + i18n[locales].hoursAgo;
-  if (ts.days < 30) return ~~ts.days + ' ' + i18n[locales].daysAgo;
+  if (ts.minutes < 60) return ts.minutes + ' ' + i18n[locales].minutesAgo;
+  if (ts.hours < 24) return ts.hours + ' ' + i18n[locales].hoursAgo;
+  if (ts.days < 30) return ts.days + ' ' + i18n[locales].daysAgo;
   if (ts.years < 1) return ~~(ts.days / 30) + '' + i18n[locales].monthsAgo;
-  return ~~ts.years + '' + i18n[locales].yearsAgo;
+  return ts.years + '' + i18n[locales].yearsAgo;
 }
 
 const i18n = {
