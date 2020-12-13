@@ -14,7 +14,7 @@ function timeFormat(time) {
   return {
     value,
     dateValue: dateString,
-    timeVlaue: timeString,
+    timeValue: timeString,
     toString() {
       return value;
     },
