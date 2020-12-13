@@ -1,6 +1,6 @@
 {
   "name": "tinykit",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "A tiny kit for web development.",
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.esm.js",
