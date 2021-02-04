@@ -3,9 +3,10 @@
 API URL:<input value="https://api.github.com/" id="apiurl" />
 <pre id="response-text"></pre>
 
-<script src="../dist/bundle.umd.js"></script>
+<!-- <script src="../dist/bundle.umd.js"></script> -->
+<script src="../dist/x/makeAjax.js"></script>
 <script>
-  var nativeAjax = tinykit.makeAjax();
+  var nativeAjax = /*tinykit.*/ makeAjax();
   var apiurlEl = document.querySelector('#apiurl');
   function fetchDataAndRender() {
     nativeAjax.send(apiurlEl.value, function (res) {

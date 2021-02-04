@@ -1,20 +1,25 @@
 <pre id="response-text"></pre>
 
-<script src="../dist/bundle.umd.js"></script>
+<!-- <script src="../dist/bundle.umd.js"></script> -->
+<script src="../dist/x/loading.js"></script>
+<script src="../dist/x/makeAjax.js"></script>
 <script>
-  tinykit.loading(
+  /*tinykit.*/ loading(
     function (state) {
-      tinykit.makeAjax().send('https://api.github.com/', function (res, xhr) {
-        if (xhr.status === 200) {
-          var repos = JSON.parse(res);
-          var html = '<ul>';
-          for (var key in repos) {
-            html += `<li>${key}: <code>${repos[key]}</code></li>`;
-          }
-          html += '</ul>';
-          state.target.innerHTML = html;
-        } else state.target.innerHTML = '网络错误！';
-      });
+      /*tinykit.*/ makeAjax().send(
+        'https://api.github.com/',
+        function (res, xhr) {
+          if (xhr.status === 200) {
+            var repos = JSON.parse(res);
+            var html = '<ul>';
+            for (var key in repos) {
+              html += `<li>${key}: <code>${repos[key]}</code></li>`;
+            }
+            html += '</ul>';
+            state.target.innerHTML = html;
+          } else state.target.innerHTML = '网络错误！';
+        }
+      );
     },
     {
       el: document.querySelector('#response-text'),
