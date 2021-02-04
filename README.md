@@ -6,11 +6,24 @@ A tiny kit for web development.
 npm install tinykit
 ```
 
+Then
+
+```js
+var tinykit = require('tinykit')
+// var {isDark} = require('tinykit)
+
+console.log(tinkit.isDark())
+```
+
 or
 
 ``` html
 <script src="https://unpkg.com/tinykit/dist/bundle.umd.js"></script>
 <!-- <script src="https://unpkg.com/tinykit/dist/bundle.umd.min.js"></script> -->
+
+<!-- inport modules -->
+<script src="https://unpkg.com/tinykit/dist/x/isDark.js"></script>
+<!-- <script src="https://unpkg.com/tinykit/dist/x/isDark.min.js"></script> -->
 ```
 
 dev
