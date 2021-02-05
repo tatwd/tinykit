@@ -5,9 +5,10 @@
  * @param {number} [option.sunset] 日落时间(小时部分), 默认值 `18`
  * @param {number} [option.sunrise] 日出时间(小时部分), 默认值 `6`
  */
-function isDark(time, option = { sunset: 18, sunrise: 6 }) {
-  var h = (time || new Date()).getHours();
-  return h < option.sunrise || h >= option.sunset;
+function isDark(time, option) {
+  const { sunset, sunrise } = option || { sunset: 18, sunrise: 6 };
+  const h = (time || new Date()).getHours();
+  return h < sunrise || h >= sunset;
 }
 
 export default isDark;

@@ -4,7 +4,7 @@
  * @param {Date} [btime] 时间 B, 可选, 默认值 `new Date()`
  */
 function timeSpan(atime, btime) {
-  var milliseconds = (btime || new Date()) - atime;
+  var milliseconds = +(btime || new Date()) - +atime;
   var seconds = ~~(milliseconds / 1000);
   var minutes = ~~(milliseconds / (1 * 60 * 1000));
   var hours = ~~(milliseconds / (1 * 60 * 60 * 1000));
