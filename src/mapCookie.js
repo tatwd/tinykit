@@ -1,8 +1,9 @@
 /**
  * 获取 cookie 映射对象
+ * @param {string} cookie cookie 字符串, 可选
  */
-function mapCookie() {
-  const parts = document.cookie.trim().split(/;\s?/);
+function mapCookie(cookie) {
+  const parts = (cookie || document.cookie).trim().split(/;\s?/);
   if (!parts.length) return {};
   const len = parts.length;
   const cookieMap = {};
