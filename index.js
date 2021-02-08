@@ -13,3 +13,5 @@ export { default as timeFormat } from './src/timeFormat';
 export { default as readCookie } from './src/readCookie';
 export { default as mapCookie } from './src/mapCookie';
 export { default as isME } from './src/isME';
+export { default as getIEVersion } from './src/getIEVersion';
+export { default as makeThrottle } from './src/makeThrottle';
