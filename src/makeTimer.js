@@ -1,18 +1,18 @@
 /**
  * 创建一个计时器
  * @param {function} handle 注册回调事件
- * @param {number} ms 间隔毫秒数
+ * @param {number} ms 间隔毫秒数, 默认 1000
  */
-function makeTimer(handle, ms = 1000) {
-  let id = 0;
+function makeTimer(handle, ms) {
+  let timeout = null;
 
   const reset = () => {
     timer.elapsed = 0;
-    clearInterval(id);
+    clearInterval(timeout);
   };
 
   const run = () => {
-    id = setInterval(() => {
+    timeout = setInterval(() => {
       timer.elapsed += timer.interval;
       handle && handle();
     }, timer.interval);
@@ -24,7 +24,7 @@ function makeTimer(handle, ms = 1000) {
     /**
      * 时间间隔(ms)
      */
-    interval: ms,
+    interval: ms || 1000,
 
     /**
      * 计时器状态
@@ -58,7 +58,7 @@ function makeTimer(handle, ms = 1000) {
      */
     stop() {
       if (timer.state === 'running') {
-        clearInterval(id);
+        clearInterval(timeout);
         timer.state = 'stopped';
       }
     },
@@ -76,7 +76,7 @@ function makeTimer(handle, ms = 1000) {
      */
     speedto(newInterval) {
       timer.interval = newInterval;
-      clearInterval(id);
+      clearInterval(timeout);
       run();
     },
   };

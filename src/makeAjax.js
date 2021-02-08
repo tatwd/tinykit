@@ -46,7 +46,7 @@ function makeAjax() {
 
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
-          handle(xhr.responseText, xhr);
+          handle && handle(xhr.responseText, xhr);
         }
       };
 
