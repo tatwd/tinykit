@@ -1,17 +1,32 @@
 <input id="input" />
-<div id="content"></div>
+<div style="display: flex">
+  <div id="content1" style="min-width: 100px">
+    <h2>makeDelayHandler</h2>
+  </div>
+  <div id="content2" style="min-width: 100px; margin-left: 15px">
+    <h2>makeThrottle</h2>
+  </div>
+</div>
 
 <script type="module">
-  import { makeDelayHandler } from '../dist/bundle.esm.js';
+  import { makeDelayHandler, makeThrottle } from '../dist/bundle.esm.js';
 
-  var handler = makeDelayHandler((event, n) => {
+  var handler1 = makeDelayHandler((event, n) => {
     console.log(this, event, n);
     document.querySelector(
-      '#content'
+      '#content1'
     ).innerHTML += `<p>${event.target.value}</p>`;
   }, 1000);
 
-  document
-    .querySelector('#input')
-    .addEventListener('keyup', (event) => handler(event, 123));
+  var handler2 = makeThrottle((event, n) => {
+    console.log(this, event, n);
+    document.querySelector(
+      '#content2'
+    ).innerHTML += `<p>${event.target.value}</p>`;
+  }, 1000);
+
+  document.querySelector('#input').addEventListener('keyup', (event) => {
+    handler1(event, 123);
+    handler2(event, 321);
+  });
 </script>
