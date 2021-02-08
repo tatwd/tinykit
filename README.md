@@ -2,8 +2,9 @@
 
 A tiny kit for web development.
 
-```
+```sh
 npm install tinykit
+# yarn add tinykit
 ```
 
 Then
@@ -17,7 +18,7 @@ console.log(tinkit.isDark())
 
 or
 
-``` html
+```html
 <script src="https://unpkg.com/tinykit/dist/bundle.umd.js"></script>
 <!-- <script src="https://unpkg.com/tinykit/dist/bundle.umd.min.js"></script> -->
 
