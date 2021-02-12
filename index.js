@@ -11,6 +11,7 @@ export { default as makeDelayHandler } from './src/makeDelayHandler';
 export { default as timeSlice } from './src/timeSlice';
 export { default as timeFormat } from './src/timeFormat';
 export { default as readCookie } from './src/readCookie';
+export { default as writeCookie } from './src/writeCookie';
 export { default as mapCookie } from './src/mapCookie';
 export { default as isME } from './src/isME';
 export { default as getIEVersion } from './src/getIEVersion';
