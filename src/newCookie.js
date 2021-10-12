@@ -6,7 +6,7 @@
  * @param {string} domain website domain
  * @param {string} path in path, default is '/'
  */
-function newCookieString(key, val, days, domain, path) {
+function newCookie(key, val, days, domain, path) {
   if (!key || !val) return null;
 
   const now = new Date();
@@ -23,4 +23,4 @@ function newCookieString(key, val, days, domain, path) {
   return cookieStr;
 }
 
-export default newCookieString;
+export default newCookie;

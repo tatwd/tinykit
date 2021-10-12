@@ -1,4 +1,4 @@
-import newCookieString from './newCookieString';
+import newCookie from './newCookie';
 
 /**
  * 设置浏览器 cookie
@@ -9,7 +9,7 @@ import newCookieString from './newCookieString';
  */
 function writeCookie(map, days, domain, path) {
   for (const key in map) {
-    document.cookie = newCookieString(key, map[key], days, domain, path);
+    document.cookie = newCookie(key, map[key], days, domain, path);
   }
 }
 
