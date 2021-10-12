@@ -7,14 +7,16 @@
   document.cookie = 'baz=';
   document.cookie = 'doz=uid=1234';
 
-  writeCookie({ foo: 123, bar: 'hello' });
+  writeCookie({ foo: 123, bar: 'hello', json: JSON.stringify({ o: 101 }) });
 
   const cookies = mapCookie();
   console.log(cookies);
 
   const contentEl = document.querySelector('#content');
-  contentEl.innerHTML += readCookie('foo') + '\n';
-  contentEl.innerHTML += readCookie('bar') + '\n';
-  contentEl.innerHTML += readCookie('doz') + '\n';
-  contentEl.innerHTML += readCookie('baz') === '';
+  contentEl.innerHTML += 'foo: ' + readCookie('foo') + '\n';
+  contentEl.innerHTML += 'bar: ' + readCookie('bar') + '\n';
+  contentEl.innerHTML += 'doz: ' + readCookie('doz') + '\n';
+  contentEl.innerHTML +=
+    'baz is empty string: ' + (readCookie('baz') === '') + '\n';
+  contentEl.innerHTML += 'json: ' + readCookie('json');
 </script>
