@@ -1,6 +1,6 @@
 import newCookie from './newCookie';
 
-test('test newCookieString', () => {
+test('test newCookie', () => {
   var str1 = newCookie('foo');
   expect(str1).toBeNull();
 
