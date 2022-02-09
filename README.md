@@ -10,8 +10,10 @@ npm install tinykit
 Then
 
 ```js
-var tinykit = require('tinykit')
-// var {isDark} = require('tinykit)
+import * as tinykit from 'tinykit';
+// import { isDark } from 'tinykit';
+// var tinykit = require('tinykit')
+// var { isDark } = require('tinykit)
 
 console.log(tinkit.isDark())
 ```
