@@ -9,6 +9,7 @@ import newCookie from './newCookie';
  */
 function writeCookie(map, days, domain, path) {
   for (const key in map) {
+    if (!Object.prototype.hasOwnProperty.call(map, key)) continue;
     document.cookie = newCookie(key, map[key], days, domain, path);
   }
 }
